@@ -93,3 +93,4 @@ The below environment has been tested.
 此 ROS 包在如下系统中进行测试；
 * 操作系统：Ubuntu 14.04， DJI Manifold
 * ROS 版本：ROS Indigo
+# DJI_SDK_X3_FACE_DETECTION
