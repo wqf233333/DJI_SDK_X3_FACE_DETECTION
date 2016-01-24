@@ -35,8 +35,8 @@ static CvHaarClassifierCascade* cascade = 0;
 const char* cascade_name = 
 "/home/ubuntu/catkin_ws/src/Onboard-SDK-ROS-2.3/dji_sdk_manifold_read_cam/src/haarcascade_frontalface_alt2.xml"; 
 /*    "haarcascade_profileface.xml";*/
-float a=640;
-float b=360;
+unsigned int a=320;
+unsigned int b=240;
 typedef unsigned char   BYTE;
 #define IMAGE_W 1280
 #define IMAGE_H 720
@@ -300,9 +300,9 @@ int main(int argc, char **argv)
 			nCount++;
                       
                        
-                   // detect_and_draw(pRawImg);
-               // drone->gimbal_speed_control(0,(360-b),-(640-a));       
-                printf("speed yaw=%f, speed_pitch=%f\n",-(640-a),(360-b));
+                   detect_and_draw(pImg);
+               drone->gimbal_speed_control(0,(240-b),-(320-a));       
+                printf("speed yaw=%d, speed_pitch=%d\n",-(320-a),(240-b));
             cvWaitKey(10);
  printf("99999\n");
 		}
@@ -322,7 +322,7 @@ int main(int argc, char **argv)
 }
 void detect_and_draw(IplImage* img )
 {
-    double scale=2.5;
+    double scale=1.0;
     static CvScalar colors[] = {
         {{0,0,255}},{{0,128,255}},{{0,255,255}},{{0,255,0}},
         {{255,128,0}},{{255,255,0}},{{255,0,0}},{{255,0,255}}
@@ -361,8 +361,8 @@ void detect_and_draw(IplImage* img )
 printf("%d",objects->total);
 if(objects->total==0)
 {
-        a=640;
-        b=360;
+        a=320;
+        b=240;
 }
     for( int i = 0; i < (objects? objects->total : 0); i++ )
     {
@@ -385,7 +385,7 @@ if(objects->total==0)
     //a =centerr.x;
    // b =centerr.y;
 
-     printf(" %f,%f \n",a,b);
+     printf(" %d,%d \n",a,b);
 
   cvShowImage( "result", img );
     //cvReleaseImage(&gray);
